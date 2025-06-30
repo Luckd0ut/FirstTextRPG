@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text-Based RPG</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<h1 id="welcome-text">Welcome to the Game!</h1>
+<input type="text" id="player-name-input" placeholder="Enter your name">
+<button id="submit-btn" onclick="setPlayerName()">Submit</button>
+
+<body>
+  <div id="game-output"></div>
+
+  <div id="inventory"></div>
+
+  <div id="inventory-section" class="hidden">
+    <h2>Inventory</h2>
+    <ul id="inventory-list"></ul>
+    </div>
+
+  <!-- these buttons are for the base game. -->
+<button id="start-btn" onclick="startGame()">Start Game</button>
+<button id="player-btn" class="hidden">Player</button>
+<button id="inventory-btn" class="hidden" onclick="toggleInventory()">Inventory</button>
+<!-- this section is for the combat window-->
+<h3> Combat!</h3>
+
+  <button id="spawn-btn" class="hidden">Find a random monster to fight!</button>
+  <button id="atk-btn" class="hidden" >Attack</button>
+  <button id="heal-btn" class="hidden" >Heal</button>
+  <!-- going to leave this sectionf or the monster load buttons-->
+   <div id="monster-section" class="hidden">
+    <p you found a monster!></p>
+    <p id="monster-name"></p>
+    <p id="monster-health"></p>
+   </div>
+</div>
+<script src="items.js"></script>
+<script src="Droprates.js"></script>
+  <script src="Monsters.js"></script>
+  <script src="player.js"></script>
+  <script src="Game.js" defer></script>
+</body>
+</html>
