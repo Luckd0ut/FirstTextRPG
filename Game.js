@@ -27,6 +27,7 @@ document.getElementById("welcome-text").classList.add("hidden");
 document.getElementById("status-panel").classList.remove("hidden");
 document.getElementById("submit-btn").classList.add("hidden");
 document.getElementById("player-name-input").classList.add("hidden");
+updateStatusPanel();
 
 setTimeout(() => {
   let opacity = 1;
@@ -45,13 +46,13 @@ setTimeout(() => {
 
 
 function startGame() {
-setPlayerName();
   document.getElementById("inventory-btn").classList.remove("hidden");
   document.getElementById("player-btn").classList.remove("hidden");
   document.getElementById("start-btn").classList.add("hidden");
   document.getElementById("welcome-text").classList.add("hidden");
   document.getElementById("status-panel").classList.remove("hidden");
   document.getElementById("combat-btn").classList.remove("hidden");
+  updateStatusPanel();
 }
 // everything above this line works without bugs
 
@@ -108,33 +109,83 @@ function updateStatusPanel() {
   document.getElementById("player-gold").textContent = `Gold: ${goldCount}`;
 }
 
+
+
+
+let monster = null;
+// this function spawns a random monster.
+
+function spawnMonster() {
+  const randomIndex = Math.floor(Math.random() * monsters.length);
+  monster = {...monsters[randomIndex]};
+  document.getElementById("monsterSpawnLog").textContent = `you encountered a wild ${monsters.name}.`
+console.log("spawn clicked, monster is:", monster);
+}
+document.getElementById("spawn-btn").classList.remove("hidden");  
+
+
+
+
+
+
+
 // this section is for the games combat logic. 
 
+function runCombatTurn() {
+  if (player.health <= 0 || monster.health <= 0) {
+    return; // Do nothing if combat is already over
+  }
 
-function combat() {
-let atkOrder = player.speed >= monster.speed ? "player" : "monster";
-const damage = Math.max(player.atk - monster.def, 0);
-while (player.health > 0 && monster.health > 0) {
-  if (atkOrder === "player") {
+  const playerGoesFirst = player.speed >= monster.speed;
+
+  if (playerGoesFirst) {
+    let damage = Math.max(player.atk - monster.def, 0);
     monster.health -= damage;
-    document.getElementById("combatLog").textcontent= (`You hit the ${monster.name} for ${damage} damage!`);
+    document.getElementById("combatLog").textContent = `You hit the ${monster.name} for ${damage} damage!`;
+
     if (monster.health <= 0) {
-      break; // Exit loop if monster is defeated
+      document.getElementById("combatMonsterLog").textContent = `You defeated the ${monster.name}!`;
+      return;
     }
-    atkOrder = "monster";
-  } else {
-     const monsterDamage = Math.max(monster.atk - player.def, 0);
-    player.health -=monsterDamage;
-    document.getElementById("combatMonsterLog").textcontent= (`The ${monster.name} hits you for ${Math.max(monster.atk - player.def, 0)} damage!`);
-    
+
+    let monsterDamage = Math.max(monster.atk - player.def, 0);
+    player.health -= monsterDamage;
+    document.getElementById("combatMonsterLog").textContent = `The ${monster.name} hits you for ${monsterDamage} damage!`;
+
     if (player.health <= 0) {
-      document.getElementById("defeatLog").textcontent= "You have been defeated!";
-      break; // Exit loop if player is defeated
-      atkOrder = "player";
-      }
+      document.getElementById("defeatLog").textContent = "You have been defeated!";
+    }
+
+  } else {
+    let monsterDamage = Math.max(monster.atk - player.def, 0);
+    player.health -= monsterDamage;
+    document.getElementById("combatMonsterLog").textContent = `The ${monster.name} hits you for ${monsterDamage} damage!`;
+
+    if (player.health <= 0) {
+      document.getElementById("defeatLog").textContent = "You have been defeated!";
+      return;
+    }
+
+    let damage = Math.max(player.atk - monster.def, 0);
+    monster.health -= damage;
+    document.getElementById("combatLog").textContent = `You hit the ${monster.name} for ${damage} damage!`;
+
+    if (monster.health <= 0) {
+      document.getElementById("combatMonsterLog").textContent = `You defeated the ${monster.name}!`;
     }
   }
 }
+document.getElementById("atk-btn").addEventListener("click", runCombatTurn);
+
+
+
+
+
+
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("start-btn").addEventListener("click", startGame);
@@ -142,6 +193,7 @@ document.getElementById("inventory-btn").addEventListener("click", () => {
 document.getElementById("inventory").textContent = "you have opened your inventory";
 document.getElementById("inventory").addEventListener("click",
   toggleInventoryDisplay);
+document.getElementById("spawn-btn").addEventListener("click", spawnMonster);
 });
 document.getElementById("save-btn").addEventListener("click", saveGame);
 document.getElementById("load-btn").addEventListener("click", loadGame);
