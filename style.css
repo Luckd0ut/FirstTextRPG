@@ -1,3 +1,36 @@
 .hidden{
     display: none;
 }
+body {
+    background-image: url(images/brickBackground.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+ background {
+  color:rgba(230, 226, 147, 0.599)
+
+}
+#status-panel {
+    color : #fff;
+    background-color:black;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  /* styling here */
+}
+
+#welcome-text {
+  color: #fff;
+}
+#return-message {
+  color: #fff;
+    position: center;
+    top: 50px;
+    transition: 1s;
+   
+}
+#body {
+    position: center;
+    
+}

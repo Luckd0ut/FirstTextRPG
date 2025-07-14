@@ -1,5 +1,4 @@
 // this file will contain all of the possible monsters in the game.
-<script src="index.html"></script>
 const monsters = {
     
         Goblin: {
@@ -21,13 +20,14 @@ const monsters = {
         health: 15,
         Atk: 3,
         Def: 2,
-        Speed: 0,
+        speed: 0,
     },
-    crow: {
+    Crow: {
         name: "Crow",
         health: 3,
         Atk: 1,
         Def: 0,
-        speed: 6,}
-
+        speed: 6
     }
+
+    };

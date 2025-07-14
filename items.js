@@ -1,20 +1,20 @@
 // this file contains the items for the game
 const itemDataBase = {
 
-
-Goldpiece : {
-        name: "Gold Piece",
+//currencies
+GoldPieces : {
+        name: "Gold Pieces",
         type: "currency",
         value: 1,
         maxstack: 9999999,
 } ,
-silverpiece: {
+SilverPiece: {
         name: "Silver Piece",
         type: "currency",
         value: 0.1,
-        maxstack: 9999999,
-    } ,
-    stick: {
+        maxstack: 9999999  } ,
+    //gear
+    Stick: {
         name: "stick",
         slot: "weapon",
         atk: 1,
@@ -32,7 +32,7 @@ Sword: {
         maxstack: 1,
         } ,
 
-leatherArmor: {
+LeatherArmor: {
         name: "Leather Armor",
         slot: "armor",
         atk: 0,
@@ -41,7 +41,7 @@ leatherArmor: {
         maxstack: 1,
     } ,
 
-tunic : {
+Tunic : {
         name: "Tunic",
         slot: "armor",
         atk: 0,
@@ -50,7 +50,7 @@ tunic : {
         maxstack: 1,
 } , 
 
-crudespeedamulet: {
+CrudeSpeedAmulet: {
         name: " crude Speed Amulet",
         slot: "amulet",
         atk: 0,
@@ -58,7 +58,7 @@ crudespeedamulet: {
         speed: 3,
         maxstack: 1,
 } ,
-amuletofatk: {
+AmuletOfAtk: {
         name: "Amulet of Attack",
         slot: "amulet",
         atk: 2,
@@ -66,7 +66,7 @@ amuletofatk: {
         speed: 0,
         maxstack: 1,
 } ,
-amuletofdef: {
+AmuletOfDef: {
         name: "Amulet of Defense",
         slot: "amulet",
         atk: 0,
@@ -74,11 +74,13 @@ amuletofdef: {
         speed: 0,
         maxstack: 1,
 } ,
+
+// Consumables
 HealthPotion: {
         name: "Health Potion",
         type: "consumable",
         health: 10,
-        maxstack: 25,
+        maxstack: 25
 
 }
 };
